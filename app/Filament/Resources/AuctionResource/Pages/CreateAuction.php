@@ -32,4 +32,9 @@ class CreateAuction extends CreateRecord
                 //     ->url(fn () => url('auctions.show', $this->record)),
             ]);
     }
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('index');
+    }
 }

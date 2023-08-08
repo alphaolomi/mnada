@@ -17,6 +17,8 @@ class AuctionResource extends Resource
 {
     protected static ?string $model = Auction::class;
 
+    protected static ?string $recordTitleAttribute = 'title';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -102,7 +104,7 @@ class AuctionResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ItemsRelationManager::class,
         ];
     }
 
