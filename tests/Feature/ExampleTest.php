@@ -1,7 +1,19 @@
 <?php
 
-it('returns a successful response', function () {
-    $response = $this->get('/');
+use function Pest\Laravel\{get};
+use App\Models\User;
+use function Pest\Laravel\{actingAs};
+ 
 
-    $response->assertStatus(200);
+it('returns a successful response', function () {
+    get('/')->assertStatus(200);
+});
+
+
+test('authenticated user can access the dashboard', function () {
+    $user = User::factory()->create();
+ 
+    actingAs($user)
+        ->get('/admin')
+        ->assertStatus(200);
 });
