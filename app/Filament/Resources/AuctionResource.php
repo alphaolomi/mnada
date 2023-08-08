@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Carbon;
 
 class AuctionResource extends Resource
 {
@@ -85,7 +86,30 @@ class AuctionResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                Tables\Filters\Filter::make('is_published')
+                    ->label('Published')
+                    ->toggle()
+                    ->query(fn (Builder $query): Builder => $query->where('is_published', true)),
+
+                Tables\Filters\Filter::make('created_at')
+                    ->form([
+                        Forms\Components\DatePicker::make('from')->label('Added from')->native(false),
+                        Forms\Components\DatePicker::make('until')->label('Added until')->native(false)
+                    ])
+                    // ...
+                    ->indicateUsing(function (array $data): array {
+                        $indicators = [];
+
+                        if ($data['from'] ?? null) {
+                            $indicators['from'] = 'Created from ' . Carbon::parse($data['from'])->toFormattedDateString();
+                        }
+
+                        if ($data['until'] ?? null) {
+                            $indicators['until'] = 'Created until ' . Carbon::parse($data['until'])->toFormattedDateString();
+                        }
+
+                        return $indicators;
+                    })
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
