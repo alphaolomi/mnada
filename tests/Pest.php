@@ -11,6 +11,8 @@
 |
 */
 
+use function Pest\Laravel\actingAs;
+
 uses(
     Tests\TestCase::class,
     Illuminate\Foundation\Testing\LazilyRefreshDatabase::class
@@ -45,4 +47,9 @@ expect()->extend('toBeOne', function () {
 function something()
 {
     // ..
+}
+
+
+function actingAsAdmin(array $data = []){
+    return actingAs(\App\Models\User::factory()->create($data));
 }

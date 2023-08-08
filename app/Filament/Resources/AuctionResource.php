@@ -83,6 +83,7 @@ class AuctionResource extends Resource
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable()
+                    ->hidden()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([

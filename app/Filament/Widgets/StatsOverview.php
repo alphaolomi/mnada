@@ -2,6 +2,8 @@
 
 namespace App\Filament\Widgets;
 
+use App\Models\Auction;
+use App\Models\Bid;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 
@@ -10,9 +12,10 @@ class StatsOverview extends BaseWidget
     protected function getStats(): array
     {
         return [
-            Stat::make('Unique views', '192.1k'),
-            Stat::make('Bounce rate', '21%'),
-            Stat::make('Average time on page', '3:12'),
+            Stat::make('Total Auctions', Auction::count()),
+            Stat::make('Active Auctions', Auction::where('is_published', true)->count()),
+            // Count Bid for Active Auctions only
+            Stat::make('Total Bids', Bid::query()->whereIn('auction_id', Auction::where('is_published', true)->pluck('id'))->count()),            
         ];
     }
 }

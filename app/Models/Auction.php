@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Auction extends Model
 {
@@ -29,14 +32,20 @@ class Auction extends Model
     // relationships
 
     // belongsTo
-    public function seller()
+    public function seller(): BelongsTo
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
 
     // hasMany
-    public function items()
+    public function items(): HasMany
     {
         return $this->hasMany(AuctionItem::class);
+    }
+
+    // bids via Auction items
+    public function bids(): HasManyThrough
+    {
+        return $this->hasManyThrough(Bid::class, AuctionItem::class);
     }
 }

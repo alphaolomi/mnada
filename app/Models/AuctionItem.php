@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class AuctionItem extends Model
 {
@@ -26,12 +27,12 @@ class AuctionItem extends Model
     // relationships
 
     // belongsTo
-    public function auction()
+    public function auction(): BelongsTo
     {
         return $this->belongsTo(Auction::class, 'auction_id');
     }
 
-    public function seller()
+    public function seller(): BelongsTo
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
