@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->decimal('starting_price', 10, 2);
-            $table->timestamps();
             
             
             $table->unsignedBigInteger('auction_id');
