@@ -23,20 +23,36 @@ class AuctionResource extends Resource
     {
         return $form
             ->schema([
-                
-                Forms\Components\TextInput::make('seller_id')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\TextInput::make('title')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
-                Forms\Components\DateTimePicker::make('start_time')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('end_time')
-                    ->required(),
-                Forms\Components\Toggle::make('is_published')
-                    ->required(),
+
+                Forms\Components\Fieldset::make('Auction Details')
+                    ->schema([
+                        // Forms\Components\TextInput::make('seller_id')
+                        // ->required()
+                        // ->numeric(),
+                        Forms\Components\TextInput::make('title')
+                            ->required(),
+                        Forms\Components\Textarea::make('description')
+                            ->columnSpanFull(),
+                        Forms\Components\DateTimePicker::make('start_time')
+                            ->required()
+                            ->native(false)
+                            ->default(now()),
+                        Forms\Components\DateTimePicker::make('end_time')
+                            ->native(false)
+                            ->required(),
+                        Forms\Components\Toggle::make('is_published')
+                            ->required(),
+                    ]),
+
+
+                // Forms\Components\Fieldset::make('Auction Items')
+                //     ->relationship('items')
+                //     ->schema([
+                //         Forms\Components\TextInput::make('title')->required(),
+                //         Forms\Components\TextInput::make('starting_price')->required()->numeric(),
+                //         Forms\Components\Textarea::make('description'),
+                //     ])
+
             ]);
     }
 
@@ -44,7 +60,7 @@ class AuctionResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('seller_id')
+                Tables\Columns\TextColumn::make('seller.name')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
@@ -82,14 +98,14 @@ class AuctionResource extends Resource
                 Tables\Actions\CreateAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -98,5 +114,5 @@ class AuctionResource extends Resource
             'view' => Pages\ViewAuction::route('/{record}'),
             'edit' => Pages\EditAuction::route('/{record}/edit'),
         ];
-    }    
+    }
 }
