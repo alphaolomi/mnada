@@ -1,5 +1,7 @@
 # Filament Version v3
 
+[![Tests](https://github.com/alphaolomi/mnada/actions/workflows/run-tests.yml/badge.svg)](https://github.com/alphaolomi/mnada/actions/workflows/run-tests.yml)
+
 ## Mnada/Auction Project
 
 A web application that allows users to create auctions and bid on them.
@@ -33,3 +35,38 @@ Its implements `Forward Auction` model. A type of auction is where many buyers b
 -   [x] Buyer can view auction details
 -   [ ] Buyer can bid on auction
 -   [ ] Buyer can pay for auction item
+
+## API Documentation
+
+### Authentication
+
+-   [ ] Login
+-   [ ] Register
+-   [ ] Logout
+
+### Auctions
+
+-   [ ] List Auctions
+-   [ ] Show Auction
+-   [ ] Create Auction
+-   [ ] Update Auction
+-   [ ] Delete Auction
+
+### Auction Items
+
+-   [ ] Create Auction Items
+-   [ ] Update Auction Items
+-   [ ] Delete Auction Items
+-   [ ] Show Auction Items
+
+### Bids
+
+-   [ ] Create Bid
+-   [ ] Delete Bid (If 5min has not passed)
+-   [ ] Show Bid
+
+### Payments
+
+-   [ ] List User Payments
+-   [ ] Create Payment
+-   [ ] Show Payment
