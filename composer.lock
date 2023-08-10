@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bb4bc9c085f6f4b106ae50edce78557",
+    "content-hash": "7877a12782c910bc66834afa45aa5d3e",
     "packages": [
         {
             "name": "awcodes/light-switch",
