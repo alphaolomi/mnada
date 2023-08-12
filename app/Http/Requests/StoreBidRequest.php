@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreBidRequest extends FormRequest
+final class StoreBidRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +24,8 @@ class StoreBidRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => ['required', 'numeric', 'min:0.01'],
-            'bidder_id' => ['required', 'exists:users,id'],
+            'amount'          => ['required', 'numeric', 'min:0.01'],
+            'bidder_id'       => ['required', 'exists:users,id'],
             'auction_item_id' => ['required', 'exists:auction_items,id'],
         ];
     }

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Auction;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class AuctionPolicy
+final class AuctionPolicy
 {
     /**
      * Determine whether the user can view any models.

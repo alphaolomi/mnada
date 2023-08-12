@@ -1,33 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Livewire;
 
 use App\Models\Bid;
 use Illuminate\Support\Facades\DB;
-use Livewire\Component;
 use Livewire\Attributes\Rule;
+use Livewire\Component;
 
-class CreateBid extends Component
+final class CreateBid extends Component
 {
-
     public $auctionItemId;
 
     #[Rule('required|numeric|min:0.01')]
     public $amount = '';
 
-    public function mount($auctionItemId = null, $startAmount = null)
+    public function mount($auctionItemId = null, $startAmount = null): void
     {
         $this->auctionItemId = $auctionItemId;
-        $this->amount = $startAmount;
+        $this->amount        = $startAmount;
     }
 
-    public function save()
+    public function save(): void
     {
 
         $bid = Bid::create([
-            'bidder_id' => auth()->id(), // 'bidder_id' => '1
+            'bidder_id'       => auth()->id(), // 'bidder_id' => '1
             'auction_item_id' => $this->auctionItemId,
-            'amount' => $this->amount,
+            'amount'          => $this->amount,
         ]);
 
         logger('bid posted', ['bid' => $bid]);

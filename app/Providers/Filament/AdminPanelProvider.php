@@ -1,8 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Providers\Filament;
 
 use App\Filament\AvatarProviders\BoringAvatarsProvider;
+use Awcodes\LightSwitch\LightSwitchPlugin;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
@@ -18,10 +21,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
-use Awcodes\LightSwitch\LightSwitchPlugin;
 
-
-class AdminPanelProvider extends PanelProvider
+final class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
@@ -60,7 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
-                'verified'
+                'verified',
             ]);
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Auction extends Model
+final class Auction extends Model
 {
     use HasFactory;
 
@@ -24,8 +26,8 @@ class Auction extends Model
 
     // casts
     protected $casts = [
-        'start_time' => 'datetime',
-        'end_time' => 'datetime',
+        'start_time'   => 'datetime',
+        'end_time'     => 'datetime',
         'is_published' => 'boolean',
     ];
 

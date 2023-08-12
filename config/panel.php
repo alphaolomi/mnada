@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 return [
     'site_title' => 'Mnada',
@@ -7,7 +8,7 @@ return [
     'headers' => [
         'remove' => [
             'X-Powered-By',
-            'Server'
+            'Server',
         ],
         'referrer-policy' => 'no-referrer',
     ],

@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands\Dev;
 
 use Illuminate\Console\Command;
 
-class ListThrowableClassesCommand extends Command
+final class ListThrowableClassesCommand extends Command
 {
     /**
      * The name and signature of the console command.

@@ -6,12 +6,10 @@ namespace App\Http\Middleware\Security;
 
 use Closure;
 
-
 final class StrictTransportSecurity
 {
     /**
-     * @param \Illuminate\Http\Request $request
-     * @param Closure $next
+     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function handle($request, Closure $next)

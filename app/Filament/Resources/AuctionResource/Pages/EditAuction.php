@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AuctionResource\Pages;
 
 use App\Filament\Resources\AuctionResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditAuction extends EditRecord
+final class EditAuction extends EditRecord
 {
     protected static string $resource = AuctionResource::class;
 
@@ -17,7 +19,6 @@ class EditAuction extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
-
 
     protected function getRedirectUrl(): string
     {

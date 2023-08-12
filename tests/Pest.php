@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
 | Test Case
@@ -29,9 +31,7 @@ uses(
 |
 */
 
-expect()->extend('toBeOne', function () {
-    return $this->toBe(1);
-});
+expect()->extend('toBeOne', fn () => $this->toBe(1));
 
 /*
 |--------------------------------------------------------------------------
@@ -44,12 +44,12 @@ expect()->extend('toBeOne', function () {
 |
 */
 
-function something()
+function something(): void
 {
     // ..
 }
 
-
-function actingAsAdmin(array $data = []){
+function actingAsAdmin(array $data = [])
+{
     return actingAs(\App\Models\User::factory()->create($data));
 }

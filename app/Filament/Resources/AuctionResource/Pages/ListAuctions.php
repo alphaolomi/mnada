@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AuctionResource\Pages;
 
 use App\Filament\Resources\AuctionResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListAuctions extends ListRecords
+final class ListAuctions extends ListRecords
 {
     protected static string $resource = AuctionResource::class;
 

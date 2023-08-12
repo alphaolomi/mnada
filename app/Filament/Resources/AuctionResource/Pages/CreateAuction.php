@@ -1,14 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AuctionResource\Pages;
 
 use App\Filament\Resources\AuctionResource;
-use Filament\Actions;
 use Filament\Notifications\Actions\Action;
-use Filament\Resources\Pages\CreateRecord;
 use Filament\Notifications\Notification;
+use Filament\Resources\Pages\CreateRecord;
 
-class CreateAuction extends CreateRecord
+final class CreateAuction extends CreateRecord
 {
     protected static string $resource = AuctionResource::class;
 
@@ -24,8 +25,8 @@ class CreateAuction extends CreateRecord
         return Notification::make()
             ->success()
             ->icon('heroicon-o-check-circle')
-            ->title("Auction created successfully")
-            ->body("You have successfully created an auction.")
+            ->title('Auction created successfully')
+            ->body('You have successfully created an auction.')
             ->actions([
                 // Action::make('Open Auction')
                 //     ->button()

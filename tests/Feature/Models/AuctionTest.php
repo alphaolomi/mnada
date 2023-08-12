@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 // Auction model unit testing
 
 use App\Models\Auction;
@@ -7,21 +9,19 @@ use App\Models\User;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\assertDatabaseMissing;
 
-
-it('can create auction', function () {
+it('can create auction', function (): void {
     $auction = Auction::factory()->create();
 
     assertDatabaseCount('auctions', 1);
     assertDatabaseHas('auctions', [
-        'title' => $auction->title,
+        'title'       => $auction->title,
         'description' => $auction->description,
     ]);
 });
 
 // test mdoel has fillable fields
-it('has fillable fields', function () {
+it('has fillable fields', function (): void {
     $auction = new Auction();
 
     expect($auction->getFillable())->toEqual([
@@ -34,11 +34,11 @@ it('has fillable fields', function () {
     ]);
 });
 
-it('has correct relations to user', function () {
+it('has correct relations to user', function (): void {
     $auction = Auction::factory()->create([
         'seller_id' => User::factory()->create()->id,
     ]);
-    
+
     // test relationship with user
     expect($auction->seller)->toBeInstanceOf(User::class);
     expect($auction->seller->id)->toEqual($auction->seller_id);
@@ -50,4 +50,3 @@ it('has correct relations to user', function () {
     expect($auction->bids)->toBeInstanceOf(\Illuminate\Database\Eloquent\Collection::class);
     expect($auction->bids())->toBeInstanceOf(\Illuminate\Database\Eloquent\Relations\HasManyThrough::class);
 });
-

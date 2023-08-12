@@ -1,20 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Livewire\Counter;
 
 use function Pest\Livewire\livewire;
 
-it('starts counter at 1', function () {
+it('starts counter at 1', function (): void {
     $counter = livewire(Counter::class);
 
     expect($counter->count)->toBe(1);
 });
- 
 
-it('can be incremented', function () {
+it('can be incremented', function (): void {
     // Arrange
     $counter = livewire(Counter::class);
-    
+
     // Act
     $counter->call('increment');
 
@@ -22,11 +23,11 @@ it('can be incremented', function () {
     expect($counter->count)->toBe(2);
     $counter->assertSee(2);
 });
- 
-it('can be decremented', function () {
+
+it('can be decremented', function (): void {
     // Arrange
     $counter = livewire(Counter::class);
-    
+
     // Act
     $counter->call('decrement');
 

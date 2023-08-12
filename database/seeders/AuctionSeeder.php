@@ -1,13 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Throwable;
 
-class AuctionSeeder extends Seeder
+final class AuctionSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -18,13 +20,13 @@ class AuctionSeeder extends Seeder
             DB::beginTransaction();
             $user = User::first();
 
-            $auction  = \App\Models\Auction::factory()->create([
-                'title' => 'Test Auction',
-                'description' => 'This is a test auction.',
+            $auction = \App\Models\Auction::factory()->create([
+                'title'        => 'Test Auction',
+                'description'  => 'This is a test auction.',
                 'is_published' => true,
-                'start_time' => now(),
-                'end_time' => now()->addDays(7),
-                'seller_id' => $user->id,
+                'start_time'   => now(),
+                'end_time'     => now()->addDays(7),
+                'seller_id'    => $user->id,
             ]);
 
             $auction->items()->saveMany(
@@ -35,7 +37,7 @@ class AuctionSeeder extends Seeder
             );
             DB::commit();
             echo 'Auction seeded successfully.';
-        } catch (\Throwable $th) {
+        } catch (Throwable $th) {
             DB::rollBack();
             echo $th->getMessage();
         }

@@ -1,12 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Policies;
 
 use App\Models\Bid;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
-class BidPolicy
+final class BidPolicy
 {
     /**
      * Determine whether the user can view any models.

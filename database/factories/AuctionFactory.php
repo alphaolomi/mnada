@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -7,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Auction>
  */
-class AuctionFactory extends Factory
+final class AuctionFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,12 +19,12 @@ class AuctionFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence(),
-            'description' => $this->faker->paragraph(),
-            'start_time' => now(),
-            'end_time' => now()->addDays(7),
+            'title'        => $this->faker->sentence(),
+            'description'  => $this->faker->paragraph(),
+            'start_time'   => now(),
+            'end_time'     => now()->addDays(7),
             'is_published' => true,
-            'seller_id' => \App\Models\User::factory(),
+            'seller_id'    => \App\Models\User::factory(),
         ];
     }
 }
