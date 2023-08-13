@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\Auction;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,7 +21,7 @@ final class AuctionSeeder extends Seeder
             DB::beginTransaction();
             $user = User::first();
 
-            $auction = \App\Models\Auction::factory()->create([
+            $auction = Auction::factory()->create([
                 'title'        => 'Test Auction',
                 'description'  => 'This is a test auction.',
                 'is_published' => true,
@@ -40,6 +41,13 @@ final class AuctionSeeder extends Seeder
         } catch (Throwable $th) {
             DB::rollBack();
             echo $th->getMessage();
+        }
+
+
+        try {
+            Auction::factory(100)->create();
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 }
