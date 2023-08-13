@@ -17,6 +17,14 @@ final class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
 
         //   $schedule->command('ban:delete-expired')->everyMinute();
+
+        // $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
+
+        // $schedule->command('model:prune', [
+        //     '--model' => [
+        //         \Spatie\Health\Models\HealthCheckResultHistoryItem::class,
+        //     ],
+        // ])->daily();
     }
 
     /**
