@@ -14,7 +14,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use LevelUp\Experience\Concerns\GiveExperience;
-
+use Spatie\Permission\Traits\HasRoles;
 
 final class User extends Authenticatable implements FilamentUser, MustVerifyEmail, BannableInterface
 {
@@ -23,6 +23,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     use Notifiable;
     use Bannable;
     use GiveExperience;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
