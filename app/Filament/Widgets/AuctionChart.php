@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Widgets;
 
 use App\Models\Auction;
@@ -7,14 +9,12 @@ use Filament\Widgets\ChartWidget;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
 
-
-class AuctionChart extends ChartWidget
+final class AuctionChart extends ChartWidget
 {
+    public ?string $filter            = 'today';
     protected static ?string $heading = 'Auctions Chart';
 
     protected static ?string $description = 'A chart showing the number of auctions created over time.';
-
-    public ?string $filter = 'today';
 
     protected static ?int $sort = 3;
 
@@ -36,23 +36,23 @@ class AuctionChart extends ChartWidget
         $activeFilter = $this->filter;
 
         $filters = [
-            'today' => ["start" => now()->startOfDay(), "end" => now()->endOfDay(), "interval" => "hour"],
-            'yesterday' => ["start" => now()->subDay()->startOfDay(), "end" => now()->subDay()->endOfDay(), "interval" => "hour"],
-            'week' => ["start" => now()->startOfWeek(), "end" => now()->endOfWeek(), "interval" => "day"],
-            'month' => ["start" => now()->startOfMonth(), "end" => now()->endOfMonth(), "interval" => "day"],
-            'year' => ["start" => now()->startOfYear(), "end" => now()->endOfYear(), "interval" => "month"],
+            'today'     => ['start' => now()->startOfDay(), 'end' => now()->endOfDay(), 'interval' => 'hour'],
+            'yesterday' => ['start' => now()->subDay()->startOfDay(), 'end' => now()->subDay()->endOfDay(), 'interval' => 'hour'],
+            'week'      => ['start' => now()->startOfWeek(), 'end' => now()->endOfWeek(), 'interval' => 'day'],
+            'month'     => ['start' => now()->startOfMonth(), 'end' => now()->endOfMonth(), 'interval' => 'day'],
+            'year'      => ['start' => now()->startOfYear(), 'end' => now()->endOfYear(), 'interval' => 'month'],
         ];
 
         $data = Trend::query(Auction::query())
-            ->between($filters[$activeFilter]["start"], $filters[$activeFilter]["end"])
-            ->interval($filters[$activeFilter]["interval"])
+            ->between($filters[$activeFilter]['start'], $filters[$activeFilter]['end'])
+            ->interval($filters[$activeFilter]['interval'])
             ->count();
 
         return [
             'datasets' => [
                 [
                     'label' => 'Auctions Count',
-                    'data' => $data->map(fn (TrendValue $value) => $value->aggregate),
+                    'data'  => $data->map(fn (TrendValue $value) => $value->aggregate),
                 ],
             ],
             'labels' => $data->map(fn (TrendValue $value) => $value->date),
@@ -62,11 +62,11 @@ class AuctionChart extends ChartWidget
     protected function getFilters(): ?array
     {
         return [
-            'today' => 'Today',
+            'today'     => 'Today',
             'yesterday' => 'Yesterday',
-            'week' => 'Last week',
-            'month' => 'Last month',
-            'year' => 'Last year',
+            'week'      => 'Last week',
+            'month'     => 'Last month',
+            'year'      => 'Last year',
         ];
     }
 

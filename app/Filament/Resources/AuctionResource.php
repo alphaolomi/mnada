@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\AuctionResource\Pages;
@@ -11,10 +13,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Illuminate\Support\Carbon;
 
-class AuctionResource extends Resource
+final class AuctionResource extends Resource
 {
     protected static ?string $model = Auction::class;
 
@@ -46,7 +47,6 @@ class AuctionResource extends Resource
                         Forms\Components\Toggle::make('is_published')
                             ->required(),
                     ]),
-
 
                 // Forms\Components\Fieldset::make('Auction Items')
                 //     ->relationship('items')
@@ -95,7 +95,7 @@ class AuctionResource extends Resource
                 Tables\Filters\Filter::make('created_at')
                     ->form([
                         Forms\Components\DatePicker::make('from')->label('Added from')->native(false),
-                        Forms\Components\DatePicker::make('until')->label('Added until')->native(false)
+                        Forms\Components\DatePicker::make('until')->label('Added until')->native(false),
                     ])
                     // ...
                     ->indicateUsing(function (array $data): array {
@@ -110,7 +110,7 @@ class AuctionResource extends Resource
                         }
 
                         return $indicators;
-                    })
+                    }),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -136,10 +136,10 @@ class AuctionResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAuctions::route('/'),
+            'index'  => Pages\ListAuctions::route('/'),
             'create' => Pages\CreateAuction::route('/create'),
-            'view' => Pages\ViewAuction::route('/{record}'),
-            'edit' => Pages\EditAuction::route('/{record}/edit'),
+            'view'   => Pages\ViewAuction::route('/{record}'),
+            'edit'   => Pages\EditAuction::route('/{record}/edit'),
         ];
     }
 }

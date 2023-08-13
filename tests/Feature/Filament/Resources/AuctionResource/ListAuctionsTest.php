@@ -1,23 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Filament\Resources\AuctionResource\Pages\ListAuctions;
 use App\Models\Auction;
 
 use function Pest\Livewire\livewire;
 
 // Before all
-beforeEach(function () {
+beforeEach(function (): void {
     actingAsAdmin();
 });
 
 // Render
-describe('render', function () {
-    it('can render page', function () {
+describe('render', function (): void {
+    it('can render page', function (): void {
         livewire(ListAuctions::class)->assertSuccessful();
     });
 
-
-    it('can display auctions by default', function () {
+    it('can display auctions by default', function (): void {
         $auctions = Auction::factory()->count(4)->create();
 
         livewire(ListAuctions::class)
@@ -27,10 +28,9 @@ describe('render', function () {
     });
 });
 
-
 // Columns
-describe('columns', function () {
-    it('can render auction titles', function () {
+describe('columns', function (): void {
+    it('can render auction titles', function (): void {
         Auction::factory()->count(10)->create();
 
         livewire(ListAuctions::class)
@@ -46,7 +46,7 @@ describe('columns', function () {
 });
 
 //Sorting
-describe('sorting', function () {
+describe('sorting', function (): void {
 
 })->skip();
 

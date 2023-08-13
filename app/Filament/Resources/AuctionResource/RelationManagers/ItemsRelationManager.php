@@ -1,24 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Filament\Resources\AuctionResource\RelationManagers;
 
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Support\RawJs;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Filament\Support\RawJs;
 
-class ItemsRelationManager extends RelationManager
+final class ItemsRelationManager extends RelationManager
 {
     protected static string $relationship = 'items';
 
-    protected static ?string $title = "Auction Items";
+    protected static ?string $title = 'Auction Items';
 
     protected static ?string $icon = 'heroicon-o-clipboard-list';
-
 
     public function form(Form $form): Form
     {
@@ -46,32 +45,31 @@ class ItemsRelationManager extends RelationManager
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
                 Tables\Columns\TextColumn::make('starting_price')
-                ->numeric(
-                    decimalPlaces: 2,
-                    decimalSeparator: '.',
-                    thousandsSeparator: ',',
-                ),
+                    ->numeric(
+                        decimalPlaces: 2,
+                        decimalSeparator: '.',
+                        thousandsSeparator: ',',
+                    ),
                 Tables\Columns\TextColumn::make('description')->limit(30),
             ])
             ->filters([
-                //
+
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make()  ->mutateFormDataUsing(function (array $data): array {
+                Tables\Actions\CreateAction::make()->mutateFormDataUsing(function (array $data): array {
                     // remove commas from the price
-                    $data['starting_price'] = (float)str_replace(',', '', $data['starting_price']);
-                    $data['seller_id'] = auth()->user()->id;
-             
+                    $data['starting_price'] = (float) str_replace(',', '', $data['starting_price']);
+                    $data['seller_id']      = auth()->user()->id;
+
                     return $data;
-                })
+                }),
             ])
             ->actions([
-                Tables\Actions\EditAction::make() ->mutateFormDataUsing(function (array $data): array {
+                Tables\Actions\EditAction::make()->mutateFormDataUsing(function (array $data): array {
                     // remove commas from the price
-                    $data['starting_price'] = (float)str_replace(',', '', $data['starting_price']);
-                    $data['seller_id'] = auth()->user()->id;
+                    $data['starting_price'] = (float) str_replace(',', '', $data['starting_price']);
+                    $data['seller_id']      = auth()->user()->id;
 
-             
                     return $data;
                 }),
                 Tables\Actions\DeleteAction::make(),
@@ -82,14 +80,13 @@ class ItemsRelationManager extends RelationManager
                 ]),
             ])
             ->emptyStateActions([
-                Tables\Actions\CreateAction::make() ->mutateFormDataUsing(function (array $data): array {
+                Tables\Actions\CreateAction::make()->mutateFormDataUsing(function (array $data): array {
                     // remove commas from the price
-                    $data['starting_price'] = (float)str_replace(',', '', $data['starting_price']);
-                    $data['seller_id'] = auth()->user()->id;
+                    $data['starting_price'] = (float) str_replace(',', '', $data['starting_price']);
+                    $data['seller_id']      = auth()->user()->id;
 
-             
                     return $data;
-                })
+                }),
             ]);
     }
 }

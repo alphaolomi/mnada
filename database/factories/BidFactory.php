@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -7,7 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Bid>
  */
-class BidFactory extends Factory
+final class BidFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +19,9 @@ class BidFactory extends Factory
     public function definition(): array
     {
         return [
-            'amount' => $this->faker->randomFloat(2, 0, 1000),
+            'amount'          => $this->faker->randomFloat(2, 0, 1000),
             'auction_item_id' => \App\Models\AuctionItem::factory(),
-            'bidder_id' => \App\Models\User::factory(),
+            'bidder_id'       => \App\Models\User::factory(),
         ];
     }
 }

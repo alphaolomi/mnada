@@ -5,7 +5,15 @@
 @endphp
 
 <div>
+  <nav>
   <h1>Latest Auctions</h1>
+
+  <ul>
+    <li><a href="{{ route('login') }}">Login</a></li>
+    <li><a href="{{ route('register') }}">Register</a></li>
+  </ul>
+  
+  </nav>
 
   @forelse  ($auctions as $auction)
     <div>
