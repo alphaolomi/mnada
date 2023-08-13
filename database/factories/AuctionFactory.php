@@ -30,6 +30,8 @@ final class AuctionFactory extends Factory
             'category'     => $category,
             'is_published' => true,
             'seller_id'    => \App\Models\User::factory(),
+            'created_at'        => fake()->dateTimeBetween('-1 months'),
+            'updated_at'        => fake()->dateTimeBetween('-1 months'),
         ];
     }
 

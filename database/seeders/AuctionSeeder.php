@@ -17,31 +17,31 @@ final class AuctionSeeder extends Seeder
      */
     public function run(): void
     {
-        try {
-            DB::beginTransaction();
-            $user = User::first();
+        // try {
+        //     DB::beginTransaction();
+        //     $user = User::first();
 
-            $auction = Auction::factory()->create([
-                'title'        => 'Test Auction',
-                'description'  => 'This is a test auction.',
-                'is_published' => true,
-                'start_time'   => now(),
-                'end_time'     => now()->addDays(7),
-                'seller_id'    => $user->id,
-            ]);
+        //     $auction = Auction::factory()->create([
+        //         'title'        => 'Test Auction',
+        //         'description'  => 'This is a test auction.',
+        //         'is_published' => true,
+        //         'start_time'   => now(),
+        //         'end_time'     => now()->addDays(7),
+        //         'seller_id'    => $user->id,
+        //     ]);
 
-            $auction->items()->saveMany(
-                \App\Models\AuctionItem::factory()
-                    ->count(2)
-                    ->state(['seller_id' => $user->id])
-                    ->make()
-            );
-            DB::commit();
-            echo 'Auction seeded successfully.';
-        } catch (Throwable $th) {
-            DB::rollBack();
-            echo $th->getMessage();
-        }
+        //     $auction->items()->saveMany(
+        //         \App\Models\AuctionItem::factory()
+        //             ->count(2)
+        //             ->state(['seller_id' => $user->id])
+        //             ->make()
+        //     );
+        //     DB::commit();
+        //     echo 'Auction seeded successfully.';
+        // } catch (Throwable $th) {
+        //     DB::rollBack();
+        //     echo $th->getMessage();
+        // }
 
 
         try {
