@@ -25,6 +25,10 @@ final class Kernel extends ConsoleKernel
         //         \Spatie\Health\Models\HealthCheckResultHistoryItem::class,
         //     ],
         // ])->daily();
+
+
+        // $schedule->command('telescope:prune --hours=48')->daily();
+
     }
 
     /**
