@@ -16,9 +16,12 @@ return new class () extends Migration {
             $table->id();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->timestamp('start_time');
-            $table->timestamp('end_time');
+            $table->timestamp('start_time')->default(now());
+            // A day after the now timestamp
+            $table->timestamp('end_time')->default(now()->addDay());
             $table->boolean('is_published')->default(false);
+            // 'category'
+            $table->string('category')->default('none');
 
             $table->unsignedBigInteger('seller_id');
             $table->foreign('seller_id')->references('id')->on('users');
