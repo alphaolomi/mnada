@@ -13,6 +13,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use LevelUp\Experience\Concerns\GiveExperience;
+
 
 final class User extends Authenticatable implements FilamentUser, MustVerifyEmail, BannableInterface
 {
@@ -20,6 +22,7 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     use HasFactory;
     use Notifiable;
     use Bannable;
+    use GiveExperience;
 
     /**
      * The attributes that are mass assignable.
@@ -60,5 +63,11 @@ final class User extends Authenticatable implements FilamentUser, MustVerifyEmai
     public function isVerified(): bool
     {
         return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+    }
+
+    // signupAward
+    public function signupAward(): void
+    {
+        $this->giveExperience(10);
     }
 }
