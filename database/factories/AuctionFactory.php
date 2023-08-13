@@ -18,13 +18,43 @@ final class AuctionFactory extends Factory
      */
     public function definition(): array
     {
+        $categories = ['Electronics', 'Fashion', 'Home Decor', 'Sports', 'Books', 'Collectibles'];
+        $title = $this->faker->realText(50);
+        $category = $this->faker->randomElement($categories);
+
         return [
-            'title'        => $this->faker->sentence(),
-            'description'  => $this->faker->paragraph(),
+            'title'        => $title,
+            'description'  => $this->faker->bs(),
             'start_time'   => now(),
             'end_time'     => now()->addDays(7),
+            'category'     => $category,
             'is_published' => true,
             'seller_id'    => \App\Models\User::factory(),
         ];
+    }
+
+    /**
+     * Indicate that the user is suspended.
+     */
+    public function seller(): Factory
+    {
+        return $this->state(function (array $attributes) {
+            return [
+                'seller_id' => \App\Models\User::factory()->create()->id,
+            ];
+        });
+    }
+
+    /**
+     * Indicate that the auction should have items.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    public function withItems(): Factory
+    {
+        return $this->has(
+            \App\Models\AuctionItem::factory()->count(3),
+            'items'
+        );
     }
 }
