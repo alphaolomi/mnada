@@ -4,8 +4,81 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bbb94b768cf0a7edce46c1acc3065019",
+    "content-hash": "cd7ff325b367db02448f6287a49a243a",
     "packages": [
+        {
+            "name": "alphaolomi/laravel-azampay",
+            "version": "v0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alphaolomi/laravel-azampay.git",
+                "reference": "8412236780c98871a5f00c3d78703433cd885022"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alphaolomi/laravel-azampay/zipball/8412236780c98871a5f00c3d78703433cd885022",
+                "reference": "8412236780c98871a5f00c3d78703433cd885022",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.5",
+                "illuminate/contracts": "^9.0|^10.0",
+                "php": "^8.1",
+                "spatie/laravel-package-tools": "^1.13.0"
+            },
+            "require-dev": {
+                "ext-json": "*",
+                "laravel/pint": "^1.0",
+                "nunomaduro/collision": "^6.0",
+                "nunomaduro/larastan": "^2.0.1",
+                "orchestra/testbench": "^7.0",
+                "pestphp/pest": "^1.21",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Alphaolomi\\Azampay\\AzampayServiceProvider"
+                    ],
+                    "aliases": {
+                        "Azampay": "Alphaolomi\\Azampay\\Facades\\Azampay"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Alphaolomi\\Azampay\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alpha Olomi",
+                    "email": "alphaolomi@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel Azampay",
+            "homepage": "https://github.com/alphaolomi/laravel-azampay",
+            "keywords": [
+                "alphaolomi",
+                "laravel",
+                "laravel-azampay"
+            ],
+            "support": {
+                "issues": "https://github.com/alphaolomi/laravel-azampay/issues",
+                "source": "https://github.com/alphaolomi/laravel-azampay/tree/v0.2.0"
+            },
+            "time": "2023-06-07T15:05:17+00:00"
+        },
         {
             "name": "awcodes/light-switch",
             "version": "v1.0.0",
