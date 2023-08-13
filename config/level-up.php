@@ -23,7 +23,7 @@ return [
     | This value is the name of the table that will be used to store experience data.
     |
      */
-    'table' => 'experiences',
+    'table' => 'levels',
 
     /*
     |-----------------------------------------------------------------------
