@@ -18,6 +18,7 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "mchev/banhammer": "^1.2",
         "predis/predis": "^2.2"
     },
     "require-dev": {
