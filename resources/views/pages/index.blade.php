@@ -7,9 +7,9 @@
 <div>
   <nav>
     <h1>Latest Auctions</h1>
-    <hr>
+    {{-- <hr>
     <livewire:on-this-page />
-    <hr>
+    <hr> --}}
     @guest
       <ul>
         <li><a href="{{ route('login') }}">Login</a></li>
