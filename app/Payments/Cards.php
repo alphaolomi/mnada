@@ -29,7 +29,7 @@ class Cards implements ArrayAccess, IteratorAggregate
 
     /**
      * @param int $offset
-     * @return array<int, Card>
+     * @return bool
      */
     public function offsetExists(mixed $offset): bool
     {
@@ -37,6 +37,7 @@ class Cards implements ArrayAccess, IteratorAggregate
     }
 
     /**
+     * @param $offset
      * @return Card|null
      */
     public function offsetGet($offset): ?Card
