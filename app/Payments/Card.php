@@ -5,6 +5,9 @@ namespace App\Payments;
 use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Support\Jsonable;
 
+/**
+ * Represents a payment card.
+ */
 readonly class Card implements Jsonable, Arrayable
 {
     public function __construct(
@@ -15,21 +18,29 @@ readonly class Card implements Jsonable, Arrayable
     ) {
     }
 
-
-    /** @inheritDoc */
-    public function toJson($options = 0)
+    /**
+     * Convert the card object to JSON.
+     *
+     * @param int $options
+     * @return string
+     */
+    public function toJson($options = 0): string
     {
         return json_encode($this->toArray(), $options);
     }
 
-    /** @inheritDoc */
-    public function toArray()
+    /**
+     * Convert the card object to an array.
+     *
+     * @return array
+     */
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
             'type' => $this->type->value,
             'last_four' => $this->lastFour,
-            'expiry' => (string)$this->expiry,
+            'expiry' => (string) $this->expiry,
         ];
     }
 }

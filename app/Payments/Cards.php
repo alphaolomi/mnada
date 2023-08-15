@@ -8,17 +8,27 @@ use InvalidArgumentException;
 use IteratorAggregate;
 
 /**
+ * Represents a collection of payment cards.
+ *
  * @implements ArrayAccess<int, Card>
  * @implements IteratorAggregate<int, Card>
  */
 class Cards implements ArrayAccess, IteratorAggregate
 {
+    /**
+     * @var array<int, Card>
+     */
+    private array $cards = [];
 
-    public function __construct(private array $cards = [])
+    public function __construct(array $cards = [])
     {
+        foreach ($cards as $card) {
+            $this->offsetSet(null, $card);
+        }
     }
 
     /**
+     * @param int $offset
      * @return array<int, Card>
      */
     public function offsetExists(mixed $offset): bool
@@ -35,6 +45,7 @@ class Cards implements ArrayAccess, IteratorAggregate
     }
 
     /**
+     * @param mixed $offset
      * @param Card $value
      */
     public function offsetSet(mixed $offset, mixed $value): void
@@ -43,7 +54,11 @@ class Cards implements ArrayAccess, IteratorAggregate
             throw new InvalidArgumentException("Expected parameter 2 to be a Card.");
         }
 
-        $this->cards[$offset] = $value;
+        if ($offset === null) {
+            $this->cards[] = $value;
+        } else {
+            $this->cards[$offset] = $value;
+        }
     }
 
     /**
@@ -61,6 +76,6 @@ class Cards implements ArrayAccess, IteratorAggregate
      */
     public function getIterator(): ArrayIterator
     {
-      return new ArrayIterator($this->cards);
+        return new ArrayIterator($this->cards);
     }
 }
