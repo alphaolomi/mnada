@@ -8,8 +8,8 @@ final class ListThrowableClasses
 {
     public function __construct()
     {
-        if ( ! function_exists('interface_exists')) {
-            exit('PHP version too old');
+        if (!function_exists('interface_exists')) {
+            throw new \RuntimeException('interface_exists() is required');
         }
 
         $throwables          = $this->listThrowableClasses();
@@ -17,24 +17,27 @@ final class ListThrowableClasses
         $this->printTree($throwablesPerParent);
 
         if (0 !== count($throwablesPerParent)) {
-            exit('ERROR!!!');
+            throw new \RuntimeException('Not all classes were printed');
         }
     }
 
-    public function listThrowableClasses()
+    /**
+     * 
+     */
+    public function listThrowableClasses(): array
     {
         $result = [];
         if (interface_exists('Throwable')) {
-            foreach (get_declared_classes() as $cn) {
-                $implements = class_implements($cn);
+            foreach (get_declared_classes() as $className) {
+                $implements = class_implements($className);
                 if (isset($implements['Throwable'])) {
-                    $result[] = $cn;
+                    $result[] = $className;
                 }
             }
         } else {
-            foreach (get_declared_classes() as $cn) {
-                if ('Exception' === $cn || is_subclass_of($cn, 'Exception')) {
-                    $result[] = $cn;
+            foreach (get_declared_classes() as $className) {
+                if ('Exception' === $className || is_subclass_of($className, 'Exception')) {
+                    $result[] = $className;
                 }
             }
         }
@@ -45,12 +48,12 @@ final class ListThrowableClasses
     public function splitInParents($classes)
     {
         $result = [];
-        foreach ($classes as $cn) {
-            $parent = (string) get_parent_class($cn);
+        foreach ($classes as $className) {
+            $parent = (string) get_parent_class($className);
             if (isset($result[$parent])) {
-                $result[$parent][] = $cn;
+                $result[$parent][] = $className;
             } else {
-                $result[$parent] = [$cn];
+                $result[$parent] = [$className];
             }
         }
 
@@ -59,8 +62,8 @@ final class ListThrowableClasses
 
     public function printTree(&$tree): void
     {
-        if ( ! isset($tree[''])) {
-            exit('No root classes!!!');
+        if (!isset($tree[''])) {
+            throw new \RuntimeException('No root classes!!!');
         }
         $this->printLeaves($tree, '', 0);
     }
