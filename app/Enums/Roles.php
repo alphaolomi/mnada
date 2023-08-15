@@ -2,10 +2,17 @@
 
 namespace App\Enums;
 
+use App\Enums\Attributes\Description;
+
 enum Roles: string
 {
+    #[Description('Administrator')]
     case SUPER_ADMIN = 'super-admin';
+
+    #[Description('Administrator')]
     case ADMIN = 'admin';
+
+    #[Description('User')]
     case USER = 'user';
 
     public static function all(): array
@@ -14,14 +21,6 @@ enum Roles: string
             self::SUPER_ADMIN,
             self::ADMIN,
             self::USER,
-        ];
-    }
-
-    public static function allExceptSuperAdmin(): array
-    {
-        return [
-            self::Admin,
-            self::User,
         ];
     }
 }
