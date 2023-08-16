@@ -24,6 +24,7 @@
         "laravel/telescope": "^4.16",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.0@beta",
+        "nunomaduro/termwind": "^1.15",
         "predis/predis": "^2.2",
         "spatie/laravel-health": "^1.23",
         "spatie/laravel-permission": "^5.10"
