@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-// Artisan::command('inspire', function () {
-//     $this->comment(Inspiring::quote());
-// })->purpose('Display an inspiring quote');
+Artisan::command('inspire', function () {
+    // $this->comment(Inspiring::quote());
+    throw new \RuntimeException('This is an exception');
+    $this->comment(Inspiring::quote());
+})->purpose('Display an inspiring quote');
