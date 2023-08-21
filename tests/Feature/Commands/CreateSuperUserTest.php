@@ -16,3 +16,12 @@ it('lists throwable classes', function () {
     
     // You can add more assertions as needed.
 });
+
+
+it('can execute dev:list-throwable', function () {
+    Artisan::call('dev:list-throwable');
+    $output = Artisan::output();
+    
+    expect($output)->toContain('Throwable');
+    expect($output)->toContain('Error');
+});
