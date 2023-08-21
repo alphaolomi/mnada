@@ -6,13 +6,17 @@
 
 <div>
   <nav>
-  <h1>Latest Auctions</h1>
+    <h1>Latest Auctions</h1>
+    {{-- <hr>
+    <livewire:on-this-page />
+    <hr> --}}
+    @guest
+      <ul>
+        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('register') }}">Register</a></li>
+      </ul>
 
-  <ul>
-    <li><a href="{{ route('login') }}">Login</a></li>
-    <li><a href="{{ route('register') }}">Register</a></li>
-  </ul>
-  
+    @endguest
   </nav>
 
   @forelse  ($auctions as $auction)

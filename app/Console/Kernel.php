@@ -15,6 +15,20 @@ final class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+
+        //   $schedule->command('ban:delete-expired')->everyMinute();
+
+        // $schedule->command(\Spatie\Health\Commands\RunHealthChecksCommand::class)->everyMinute();
+
+        // $schedule->command('model:prune', [
+        //     '--model' => [
+        //         \Spatie\Health\Models\HealthCheckResultHistoryItem::class,
+        //     ],
+        // ])->daily();
+
+
+        // $schedule->command('telescope:prune --hours=48')->daily();
+
     }
 
     /**

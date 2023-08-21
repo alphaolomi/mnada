@@ -20,6 +20,12 @@ final class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        // \Cog\Laravel\Ban\Events\ModelWasBanned::class => [
+        //     \App\Listeners\BanNotification::class,
+        // ],
+        // \Cog\Laravel\Ban\Events\ModelWasUnbanned::class => [
+        //     \App\Listeners\UnbanNotification::class,
+        // ],
     ];
 
     /**

@@ -2,8 +2,13 @@
 
 declare(strict_types=1);
 
-it('returns a successful response', function (): void {
-    $response = $this->get('/');
+use App\Models\User;
 
-    $response->assertStatus(200);
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\get;
+
+it('returns a successful response', function (): void {
+    actingAs(User::factory()->create());
+   get('/')->assertOk();
+//    get('/')->dd();
 });
