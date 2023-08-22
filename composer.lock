@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55226c0a3f88f188fc16e992681463a9",
+    "content-hash": "df7b77360dd151586d2cdf2a97eb6ff3",
     "packages": [
         {
             "name": "alphaolomi/laravel-azampay",
